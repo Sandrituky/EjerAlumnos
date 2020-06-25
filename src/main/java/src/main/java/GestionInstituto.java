@@ -111,8 +111,12 @@ public class GestionInstituto {
 		System.out.print("Edad: ");
 		int edad = scan.nextInt();
 		
-		Alumno alumnoCreate = new Alumno(dni, nombre, apellidos, edad);
-		alumService.addAlumno(alumnoCreate);
+		Alumno alumno = new Alumno(dni, nombre, apellidos, edad);
+		if(alumService.addAlumno(alumno)) {
+			System.out.println("Se ha añadido el alumno");
+		}else {
+			System.out.println("Ya existe un alumno con el DNI "+alumno.getDni());
+		}
 	}
 	
 	public static void deleteAlumno() {

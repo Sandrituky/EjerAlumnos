@@ -35,10 +35,17 @@ public class AlumnoService {
 	}
 	
 	public boolean addAlumno(Alumno alumno) {
-		List <Alumno> listaAlumnos = alumnosRepo.findAllAlumnos();
-		alumnosRepo.createAlumno(alumno);
-		listaAlumnos.add(alumno);
-		return true;
+		boolean resul = false;
+
+		if(alumnosRepo.existsByDni(alumno)==true){
+			resul=false;
+		}else {
+			List <Alumno> listaAlumnos = alumnosRepo.findAllAlumnos();
+			alumnosRepo.createAlumno(alumno);
+			listaAlumnos.add(alumno);
+			resul=true;
+		}
+		return resul;
 		
 	}
 	

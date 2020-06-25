@@ -170,6 +170,33 @@ public class AlumnoRepository {
 		return resul;
 
 	}
+	
+	public boolean existsByDni(Alumno alumno) {
+		boolean resul = true;
+		
+		try {
+		Connection conexion = openConnection();
+		String query = "SELECT * FROM alumno WHERE dni=?";
+		
+		PreparedStatement pst = conexion.prepareStatement(query);
+		pst.setString(1, alumno.getDni());
+			
+		ResultSet rs = pst.executeQuery();
+		if (rs.next() == true) {
+			resul = true;
+		}else {
+			resul = false;
+		}
+
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			resul = true;
+		}
+		return resul;
+		
+		
+	}
 
 
 
